@@ -2,7 +2,7 @@
 #define CARD_H_INCLUDED
 #include <bits/stdc++.h>
 
-#define CARD_WIDTH 13
+#define CARD_WIDTH 17
 #define CARD_HEIGHT 11
 
 class Suit
