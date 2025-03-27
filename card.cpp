@@ -91,6 +91,16 @@ std::string Card::to_string() const
     return std::to_string(rank) + "," + suit->to_string();
 }
 
+int Card::get_rank() const
+{
+    return rank;
+}
+
+const Suit* Card::get_suit() const
+{
+    return suit;
+}
+
 std::vector<std::string> Card::get_pattern() const
 {
     std::vector<std::string> result;
@@ -112,7 +122,10 @@ std::vector<std::string> Card::get_pattern() const
     return result;
 }
 
-void Deck::set_deck(std::vector<Card> input)
+// Deck 构造函数
+Deck::Deck(const std::vector<Card>& cards) : deck(cards) {}
+
+void Deck::set_deck(std::vector<Card>& input)
 {
     deck = input;
 }
@@ -139,4 +152,58 @@ void Deck::show_deck(int cols) const
         }
         std::cout << "\n";
     }
+}
+
+void Deck::add_card(const Card& card)
+{
+    deck.push_back(card);
+}
+
+Card Deck::remove_card(int index)
+{
+    if (index < 0 || index >= deck.size())
+    {
+        throw std::out_of_range("Card index out of range");
+    }
+    
+    Card removed = deck[index];
+    deck.erase(deck.begin() + index);
+    return removed;
+}
+
+void Deck::clear()
+{
+    deck.clear();
+}
+
+void Deck::shuffle()
+{
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(deck.begin(), deck.end(), g);
+}
+
+size_t Deck::size() const
+{
+    return deck.size();
+}
+
+bool Deck::empty() const
+{
+    return deck.empty();
+}
+
+const Card& Deck::get_card(int index) const
+{
+    if (index < 0 || index >= deck.size())
+    {
+        throw std::out_of_range("Card index out of range");
+    }
+    
+    return deck[index];
+}
+
+const std::vector<Card>& Deck::get_cards() const
+{
+    return deck;
 }

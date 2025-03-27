@@ -50,6 +50,8 @@ public:
     Card(const Suit* s, int r);
     std::string to_string() const;
     std::vector<std::string> get_pattern() const;
+    int get_rank() const;
+    const Suit* get_suit() const;
 };
 
 class Deck
@@ -57,8 +59,21 @@ class Deck
 private:
     std::vector<Card> deck;
 public:
-    void set_deck(std::vector<Card> input);
+    Deck() = default;
+    Deck(const std::vector<Card>& cards);
+    
+    void set_deck(std::vector<Card>& input);
     void show_deck(int cols) const;
+    
+    void add_card(const Card& card);
+    Card remove_card(int index);
+    void clear();
+    void shuffle();
+    
+    size_t size() const;
+    bool empty() const;
+    const Card& get_card(int index) const;
+    const std::vector<Card>& get_cards() const;
 };
 
 #endif
