@@ -1,6 +1,7 @@
 #ifndef CARD_H_INCLUDED
 #define CARD_H_INCLUDED
 #include <bits/stdc++.h>
+#include "card_effect.hpp"
 
 #define CARD_WIDTH 17
 #define CARD_HEIGHT 11
@@ -45,23 +46,34 @@ class Card
 {
 private:
     const Suit* suit;
+    const CardEffect* effect;   
     int rank;
+
 public:
-    Card(const Suit* s, int r);
+    Card(const Suit* s, const CardEffect* e, int r);
+
+    ~Card()
+    {
+        delete suit;
+        delete effect;
+    }
+
     std::string to_string() const;
     std::vector<std::string> get_pattern() const;
     int get_rank() const;
     const Suit* get_suit() const;
+    const CardEffect* get_effect() const;
 };
 
 class Deck
 {
 private:
     std::vector<Card> deck;
+
 public:
     Deck() = default;
     Deck(const std::vector<Card>& cards);
-    
+
     void set_deck(std::vector<Card>& input);
     void show_deck(int cols) const;
     

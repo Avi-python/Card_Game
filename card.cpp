@@ -1,4 +1,5 @@
 #include "card.h"
+#include "card_effect.hpp"
 #include <sstream>
 #include <bits/stdc++.h>
 
@@ -84,7 +85,7 @@ std::vector<std::string> Spades::get_pattern() const
     };
 }
 
-Card::Card(const Suit* s, int r) : suit(s), rank(r) {}
+Card::Card(const Suit* s, const CardEffect* e, int r) : suit(s), effect(e), rank(r) {}
 
 std::string Card::to_string() const 
 {
@@ -120,6 +121,11 @@ std::vector<std::string> Card::get_pattern() const
     result.push_back(std::string(CARD_WIDTH, '-'));
 
     return result;
+}
+
+const CardEffect* Card::get_effect() const
+{
+    return effect;
 }
 
 // Deck 构造函数

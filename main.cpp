@@ -6,9 +6,9 @@ int main()
 {
     NineNine game(4, 5);
     
-    game.add_player("Jack");
-    game.add_player("Daniel");
-    game.add_player("Rose");
+    game.add_player("Jack", true);
+    game.add_player("Daniel", false);
+    game.add_player("Rose", false);
     
     game.setup_game(); // 洗牌 發牌
     
@@ -26,4 +26,3 @@ int main()
     game.end_game();
 
     return 0;
-}

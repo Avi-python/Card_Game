@@ -16,9 +16,11 @@ class NineNine {
 private:
     GameState current_state;
     std::vector<std::shared_ptr<User>> players;
+    int turn_direction;
     int current_player_index;
     int initial_hand_size;
     int max_players;
+    int current_counter;
     Deck game_deck;
     
     void setup_deck();
@@ -27,9 +29,19 @@ private:
 public:
     NineNine(int maxPlayers = 4, int initialHandSize = 5);
     
-    void add_player(const std::string& playerName);
+    void add_player(const std::string& player_name, bool is_human);
     void remove_player(int playerIndex);
+    int get_players_size() const;
     void setup_game();
+
+    void set_turn_direction(int val);
+    int get_turn_direction() const;
+
+    void set_current_player_index(int val);
+    int get_current_player_index() const;
+
+    void set_current_counter(int val);
+    int get_current_counter() const;
     
     void start_game();
     void end_game();
